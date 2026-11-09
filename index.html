@@ -225,6 +225,37 @@
     border-radius:20px;
     margin-bottom:5px;
   }
+  .method-fav-toggle{
+    display:flex;
+    justify-content:center;
+    margin-bottom:16px;
+  }
+  .method-fav-toggle button{
+    background:var(--card);
+    border:1.5px solid var(--cream-dark);
+    color:var(--terracotta-dark);
+    font-weight:600;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:0.78rem;
+    cursor:pointer;
+  }
+  .method-fav-toggle button.active{
+    background:var(--mustard);
+    border-color:var(--mustard);
+    color:var(--brown);
+  }
+  .method-card{position:relative; cursor:pointer;}
+  .fav-star{
+    position:absolute;
+    top:12px;
+    right:14px;
+    font-size:1.1rem;
+    color:var(--cream-dark);
+    transition:color .15s, transform .15s;
+  }
+  .method-card.favorited .fav-star{color:var(--mustard); transform:scale(1.15);}
+  .method-card.hidden-method{display:none;}
 
   /* Calculator */
   .field{margin-bottom:14px;}
@@ -393,9 +424,43 @@
     gap:10px;
     padding:13px 0;
     border-bottom:1px solid var(--cream-dark);
+    align-items:flex-start;
+    cursor:pointer;
   }
   .tip-item:last-child{border-bottom:none;}
   .tip-emoji{font-size:1.3rem;}
+  .tip-check{
+    flex-shrink:0;
+    width:22px;
+    height:22px;
+    border-radius:7px;
+    border:2px solid var(--cream-dark);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    color:transparent;
+    margin-top:2px;
+    transition:all .15s;
+  }
+  .tip-item.done .tip-check{
+    background:var(--sage);
+    border-color:var(--sage);
+    color:white;
+  }
+  .tip-item.done h3, .tip-item.done p{
+    opacity:0.55;
+    text-decoration:line-through;
+  }
+  .tips-progress{
+    margin-bottom:16px;
+  }
+  .tips-progress-label{
+    font-size:0.82rem;
+    color:var(--muted);
+    text-align:center;
+    margin-top:6px;
+  }
 
   .mistake-item{
     display:flex;
@@ -759,58 +824,74 @@
     <div class="section-intro">
       <span class="eyebrow">Elige tu ritmo</span>
       <h2>12 formas de ahorrar</h2>
-      <p>Elige la que más se acomode a tu día a día, o combina varias.</p>
+      <p>Elige la que más se acomode a tu día a día, o combina varias. Toca una tarjeta para marcarla como favorita.</p>
     </div>
-    <div class="method-grid">
-      <div class="card method-card">
+    <div class="method-fav-toggle">
+      <button id="favToggleBtn" onclick="toggleFavFilter()">⭐ Ver solo mis favoritos</button>
+    </div>
+    <div class="method-grid" id="methodGrid">
+      <div class="card method-card" data-method="52semanas">
+        <span class="fav-star">★</span>
         <div class="method-icon">📅</div>
         <div><span class="method-tag">Clásico</span><h3>Reto de las 52 semanas</h3><p>Cada semana ahorras un poco más que la anterior: semana 1 ahorras $10, semana 2 $20, y así hasta la semana 52. Sin darte cuenta, terminas el año con una buena cantidad guardada.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="503020">
+        <span class="fav-star">★</span>
         <div class="method-icon">📊</div>
         <div><span class="method-tag">Organización</span><h3>Regla 50/30/20</h3><p>De lo que ganas: 50% a lo esencial (comida, transporte), 30% a gustos personales, y 20% directo al ahorro, sin tocarlo.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="bote">
+        <span class="fav-star">★</span>
         <div class="method-icon">🪙</div>
         <div><span class="method-tag">Sin esfuerzo</span><h3>El bote del cambio</h3><p>Todo el cambio o los billetes chicos que te sobren al día se van directo a un bote o alcancía. No lo notas en el bolsillo, pero se acumula rápido.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="sobres">
+        <span class="fav-star">★</span>
         <div class="method-icon">✉️</div>
         <div><span class="method-tag">Control</span><h3>Sobres por categoría</h3><p>Divides tu dinero en "sobres" (pueden ser digitales): comida, diversión, ahorro, imprevistos. Cuando se acaba lo de un sobre, ya no gastas más en eso ese mes.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="pagateprimero">
+        <span class="fav-star">★</span>
         <div class="method-icon">⚡</div>
         <div><span class="method-tag">Automático</span><h3>Págate a ti primero</h3><p>El día que te llega dinero, aparta tu ahorro de inmediato (aunque sea poco) antes de gastar en cualquier otra cosa. Lo que sobra es lo que usas para vivir.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="24horas">
+        <span class="fav-star">★</span>
         <div class="method-icon">⏳</div>
         <div><span class="method-tag">Anti-impulso</span><h3>Regla de las 24 horas</h3><p>Antes de comprar algo que no necesitas de verdad, espera un día completo. Si al otro día lo sigues queriendo, decides con más calma.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="diassingastar">
+        <span class="fav-star">★</span>
         <div class="method-icon">🚫</div>
         <div><span class="method-tag">Reto</span><h3>Días sin gastar</h3><p>Elige 2 o 3 días a la semana donde no gastas absolutamente nada extra, solo lo indispensable. Funciona muy bien combinado con el reto de 30 días.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="redondeo">
+        <span class="fav-star">★</span>
         <div class="method-icon">🔄</div>
         <div><span class="method-tag">Redondeo</span><h3>Redondea tus compras</h3><p>Cada vez que compres algo, redondea el precio hacia arriba (ej. de $47 a $50) y guarda la diferencia en un bote o cuenta aparte.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="kakeibo">
+        <span class="fav-star">★</span>
         <div class="method-icon">📓</div>
         <div><span class="method-tag">Método japonés</span><h3>Kakeibo</h3><p>Cada mes anotas a mano cuánto entra, cuánto planeas gastar, cuánto gastaste de verdad y cómo mejorar. Es más reflexivo: te hace preguntarte "¿esto lo necesito o lo quiero?" antes de cada gasto grande.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="emergencia">
+        <span class="fav-star">★</span>
         <div class="method-icon">🛟</div>
         <div><span class="method-tag">Protección</span><h3>Fondo de emergencia</h3><p>Antes de ahorrar para gustos, junta un colchón que cubra entre 3 y 6 meses de tus gastos básicos. Es el ahorro que no se toca salvo una urgencia real (quedarte sin trabajo, un problema de salud, etc.).</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="inversion">
+        <span class="fav-star">★</span>
         <div class="method-icon">📈</div>
         <div><span class="method-tag">Siguiente nivel</span><h3>Inversión básica</h3><p>Cuando ya tienes el hábito de ahorrar, puedes mover parte de ese dinero a instrumentos de bajo riesgo como CETES o un fondo de inversión, para que tu dinero crezca un poco más que guardado en casa.</p></div>
       </div>
-      <div class="card method-card">
+      <div class="card method-card" data-method="metacompartida">
+        <span class="fav-star">★</span>
         <div class="method-icon">🎯</div>
         <div><span class="method-tag">En grupo</span><h3>Meta compartida</h3><p>Ahorrar junto con una amiga o tu pareja para algo en común (un viaje, un regalo, un evento) ayuda a mantener la disciplina porque hay alguien más pendiente de la meta contigo.</p></div>
       </div>
     </div>
+    <div class="empty-msg" id="noFavsMsg" style="display:none;">Todavía no marcas ningún método como favorito.</div>
   </section>
 
   <!-- MI PANEL (interactivo) -->
@@ -968,7 +1049,7 @@
     </div>
     <div class="card">
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <div class="progress-label" id="progressLabel">0 / 30 días</div>
+      <div class="progress-label" id="progressLabel">0 / 30 días · racha más larga: 0</div>
       <div class="grid" id="challengeGrid"></div>
       <div class="celebrate" id="celebrate">🎉 ¡Completaste el reto de 30 días! Ya tienes un hábito de ahorro en marcha.</div>
       <button class="btn secondary" style="margin-top:16px;" onclick="resetChallenge()">Reiniciar reto</button>
@@ -980,46 +1061,60 @@
     <div class="section-intro">
       <span class="eyebrow">Hábitos chiquitos</span>
       <h2>Tips para gastar menos</h2>
-      <p>Pequeños cambios que suman grande.</p>
+      <p>Pequeños cambios que suman grande. Marca los que ya apliques.</p>
     </div>
-    <div class="card">
-      <div class="tip-item">
+    <div class="card tips-progress">
+      <div class="progress-bar"><div class="progress-fill" id="tipsProgressFill"></div></div>
+      <div class="tips-progress-label" id="tipsProgressLabel">0 de 10 tips aplicados</div>
+    </div>
+    <div class="card" id="tipsList">
+      <div class="tip-item" data-tip="lista">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">🛒</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Lista antes de comprar</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Antes de ir a la tienda o abrir la app, escribe qué necesitas. Si no está en la lista, espera 24 horas antes de comprarlo.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="suscripciones">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">📱</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Revisa tus suscripciones</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Streaming, apps, membresías... cancela las que no uses al menos una vez por semana.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="cocina">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">🍱</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Cocina en lote</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Preparar comida para varios días cuesta menos que pedir o comprar algo ya hecho cada vez.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="ropa">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">👗</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Regla de "lo que ya tengo"</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Antes de comprar ropa nueva, revisa si puedes combinar algo que ya tienes de forma diferente.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="efectivo">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">💳</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Paga en efectivo cuando puedas</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Ver físicamente el dinero salir de tu bolsa ayuda más a frenar gastos que pagar sin pensar con tarjeta.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="notificaciones">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">🔔</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Desactiva notificaciones de ofertas</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Las notificaciones de "oferta" o "último día" están diseñadas para generarte urgencia de comprar sin pensar.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="buddy">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">🤝</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Busca un "accountability buddy"</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Avísale a una amiga tu meta de ahorro — es más fácil mantenerse cuando alguien más lo sabe.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="revision">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">📆</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Revisa tus gastos cada semana</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Diez minutos los domingos para ver en qué se fue tu dinero te ayuda a notar fugas antes de que se vuelvan hábito.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="comparar">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">🏷️</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Compara antes de comprar</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Para compras grandes, revisa precios en al menos 2 o 3 lugares antes de decidir.</p></div>
       </div>
-      <div class="tip-item">
+      <div class="tip-item" data-tip="celebra">
+        <div class="tip-check">✓</div>
         <div class="tip-emoji">🎁</div>
         <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Celebra tus avances</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Cuando llegues a una meta chica, date un gusto pequeño planeado — ayuda a que ahorrar no se sienta como privación constante.</p></div>
       </div>
@@ -1046,7 +1141,8 @@
     </div>
 
     <div class="card quote-card">
-      <p>"No se trata de cuánto ganas, sino de cuánto decides quedarte."</p>
+      <p id="quoteText">"No se trata de cuánto ganas, sino de cuánto decides quedarte."</p>
+      <button class="mini-btn" style="margin-top:16px; background:rgba(255,255,255,0.18); color:var(--cream);" onclick="nextQuote()">↻ Otra frase</button>
     </div>
 
     <div class="fact-grid" style="margin-top:16px;">
@@ -1127,6 +1223,9 @@
       <span class="eyebrow">Para que entiendas todo</span>
       <h2>Glosario básico</h2>
       <p>Términos que vas a escuchar seguido al hablar de dinero.</p>
+    </div>
+    <div class="field" style="margin-bottom:4px;">
+      <input type="text" id="glossarySearch" placeholder="🔍 Busca un término..." oninput="filterGlossary()">
     </div>
     <div class="card">
       <div class="glossary-item">
@@ -1274,7 +1373,9 @@
       if(done) doneCount++;
     });
     document.getElementById('progressFill').style.width = (doneCount/TOTAL_DAYS*100) + '%';
-    document.getElementById('progressLabel').textContent = `${doneCount} / ${TOTAL_DAYS} días`;
+    let longest=0, current=0;
+    challengeState.forEach(d=>{ if(d){current++; longest=Math.max(longest,current);} else {current=0;} });
+    document.getElementById('progressLabel').textContent = `${doneCount} / ${TOTAL_DAYS} días · racha más larga: ${longest}`;
     document.getElementById('celebrate').classList.toggle('show', doneCount===TOTAL_DAYS);
   }
 
@@ -1498,6 +1599,99 @@
   loadGoals(); renderGoals();
   loadExpenses(); renderExpenses();
   loadEnvelope(); renderEnvelope();
+
+  /* ================= MÉTODOS: favoritos ================= */
+  const FAVS_KEY = 'metodos_favoritos';
+  let favMethods = [];
+  try{ favMethods = JSON.parse(localStorage.getItem(FAVS_KEY)) || []; }catch(e){ favMethods = []; }
+  let showingOnlyFavs = false;
+
+  function paintFavs(){
+    document.querySelectorAll('.method-card').forEach(card=>{
+      const id = card.dataset.method;
+      card.classList.toggle('favorited', favMethods.includes(id));
+    });
+  }
+  document.querySelectorAll('.method-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const id = card.dataset.method;
+      if(favMethods.includes(id)){
+        favMethods = favMethods.filter(x=>x!==id);
+      } else {
+        favMethods.push(id);
+      }
+      try{ localStorage.setItem(FAVS_KEY, JSON.stringify(favMethods)); }catch(e){}
+      paintFavs();
+      if(showingOnlyFavs) applyFavFilter();
+    });
+  });
+  function applyFavFilter(){
+    document.querySelectorAll('.method-card').forEach(card=>{
+      const id = card.dataset.method;
+      card.classList.toggle('hidden-method', showingOnlyFavs && !favMethods.includes(id));
+    });
+    document.getElementById('noFavsMsg').style.display = (showingOnlyFavs && favMethods.length===0) ? 'block' : 'none';
+  }
+  function toggleFavFilter(){
+    showingOnlyFavs = !showingOnlyFavs;
+    document.getElementById('favToggleBtn').classList.toggle('active', showingOnlyFavs);
+    document.getElementById('favToggleBtn').textContent = showingOnlyFavs ? '⭐ Viendo solo favoritos' : '⭐ Ver solo mis favoritos';
+    applyFavFilter();
+  }
+  paintFavs();
+
+  /* ================= TIPS: checklist con progreso ================= */
+  const TIPS_KEY = 'tips_aplicados';
+  let appliedTips = [];
+  try{ appliedTips = JSON.parse(localStorage.getItem(TIPS_KEY)) || []; }catch(e){ appliedTips = []; }
+  const allTipItems = document.querySelectorAll('.tip-item');
+
+  function renderTipsProgress(){
+    const total = allTipItems.length;
+    const done = appliedTips.length;
+    document.getElementById('tipsProgressFill').style.width = (done/total*100) + '%';
+    document.getElementById('tipsProgressLabel').textContent = `${done} de ${total} tips aplicados`;
+  }
+  allTipItems.forEach(item=>{
+    const id = item.dataset.tip;
+    if(appliedTips.includes(id)) item.classList.add('done');
+    item.addEventListener('click', ()=>{
+      if(appliedTips.includes(id)){
+        appliedTips = appliedTips.filter(x=>x!==id);
+        item.classList.remove('done');
+      } else {
+        appliedTips.push(id);
+        item.classList.add('done');
+      }
+      try{ localStorage.setItem(TIPS_KEY, JSON.stringify(appliedTips)); }catch(e){}
+      renderTipsProgress();
+    });
+  });
+  renderTipsProgress();
+
+  /* ================= MOTIVACIÓN: frases rotativas ================= */
+  const QUOTES = [
+    '"No se trata de cuánto ganas, sino de cuánto decides quedarte."',
+    '"Cada peso que ahorras hoy es una opción extra para tu yo del futuro."',
+    '"Ahorrar no es dejar de vivir, es elegir con más calma."',
+    '"Un hábito pequeño sostenido vence a una meta grande abandonada."',
+    '"No necesitas ganar más para empezar — necesitas empezar para ganar más control."',
+    '"La disciplina de hoy es la tranquilidad de mañana."'
+  ];
+  let quoteIndex = 0;
+  function nextQuote(){
+    quoteIndex = (quoteIndex+1) % QUOTES.length;
+    document.getElementById('quoteText').textContent = QUOTES[quoteIndex];
+  }
+
+  /* ================= GLOSARIO: buscador ================= */
+  function filterGlossary(){
+    const q = document.getElementById('glossarySearch').value.toLowerCase().trim();
+    document.querySelectorAll('.glossary-item').forEach(item=>{
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(q) ? '' : 'none';
+    });
+  }
 </script>
 
 </body>
