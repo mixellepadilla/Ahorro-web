@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahorra Sin Drama</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@400;500;600;700&display=swap');
+
+  :root{
+    --cream:#faf3e7;
+    --cream-dark:#f1e6d3;
+    --terracotta:#c96f4a;
+    --terracotta-dark:#aa5636;
+    --sage:#8a9a6e;
+    --sage-light:#e3e9d6;
+    --mustard:#e3b23c;
+    --brown:#3d2b23;
+    --muted:#8a7764;
+    --card:#fffdf8;
+    --radius:22px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:var(--cream);
+    color:var(--brown);
+    padding-bottom:70px;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+  }
+  em{font-style:italic; color:var(--terracotta);}
+
+  /* HERO */
+  header{
+    position:relative;
+    background:var(--terracotta);
+    color:var(--cream);
+    padding:50px 20px 86px;
+    text-align:center;
+    overflow:hidden;
+  }
+  header::after{
+    content:'';
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    height:36px;
+    background:
+      radial-gradient(circle at 10px 0, transparent 12px, var(--cream) 13px) 0 -12px/40px 24px repeat-x;
+  }
+  header .blob{
+    position:absolute;
+    border-radius:50%;
+  }
+  header .blob1{width:170px;height:170px;top:-70px;left:-50px; background:rgba(255,255,255,0.08);}
+  header .blob2{width:110px;height:110px;bottom:10px;right:-20px; background:var(--mustard); opacity:0.5;}
+  header .blob3{width:60px;height:60px;top:34px;right:50px; background:var(--sage); opacity:0.7;}
+  header .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-weight:600;
+    opacity:0.9;
+    position:relative;
+    z-index:2;
+  }
+  header h1{
+    font-size:2.5rem;
+    margin:10px 0 12px;
+    font-weight:600;
+    position:relative;
+    z-index:2;
+    line-height:1.1;
+  }
+  header h1 em{color:var(--mustard); font-style:italic;}
+  header p{
+    margin:0;
+    opacity:0.95;
+    font-size:1rem;
+    max-width:440px;
+    margin-inline:auto;
+    position:relative;
+    z-index:2;
+  }
+  .hero-stats{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:22px;
+    position:relative;
+    z-index:2;
+    flex-wrap:wrap;
+  }
+  .hero-stat{
+    background:rgba(255,255,255,0.16);
+    padding:7px 14px;
+    border-radius:30px;
+    font-size:0.74rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+
+  nav{
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:-18px auto 34px;
+    max-width:740px;
+    padding:0 16px;
+    position:relative;
+    z-index:5;
+  }
+  nav button{
+    background:var(--card);
+    border:1.5px solid var(--cream-dark);
+    color:var(--terracotta-dark);
+    font-weight:600;
+    padding:10px 15px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:0.78rem;
+    font-family:'Poppins',sans-serif;
+    transition:all .2s;
+    box-shadow:0 4px 14px rgba(61,43,35,0.08);
+  }
+  nav button.active{
+    background:var(--brown);
+    color:var(--cream);
+    border-color:var(--brown);
+  }
+
+  main{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  section{display:none;}
+  section.active{display:block; animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+
+  .section-intro{
+    text-align:center;
+    margin-bottom:20px;
+  }
+  .section-intro .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--sage);
+    font-weight:700;
+    display:block;
+    margin-bottom:4px;
+  }
+  .section-intro h2{
+    font-size:1.6rem;
+    margin:0 0 6px;
+    color:var(--brown);
+  }
+  .section-intro p{
+    color:var(--muted);
+    font-size:0.9rem;
+    margin:0;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:22px 20px;
+    margin-bottom:16px;
+    box-shadow:0 6px 22px rgba(61,43,35,0.06);
+    border:1px solid var(--cream-dark);
+  }
+  .card > h3:first-child{margin-top:0;}
+
+  /* METHOD CARDS */
+  .method-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  .method-card{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:18px;
+    position:relative;
+  }
+  .method-icon{
+    width:50px;
+    height:50px;
+    flex-shrink:0;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+    background:var(--sage-light);
+  }
+  .method-card h3{
+    margin:0 0 4px;
+    font-size:1.08rem;
+    color:var(--brown);
+    font-weight:600;
+  }
+  .method-card p{
+    margin:0;
+    color:var(--muted);
+    font-size:0.87rem;
+    line-height:1.55;
+  }
+  .method-tag{
+    display:inline-block;
+    font-size:0.64rem;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--terracotta-dark);
+    background:#fbe4d8;
+    padding:3px 10px;
+    border-radius:20px;
+    margin-bottom:5px;
+  }
+
+  /* Calculator */
+  .field{margin-bottom:14px;}
+  .field label{
+    display:block;
+    font-size:0.84rem;
+    font-weight:600;
+    margin-bottom:6px;
+    color:var(--brown);
+  }
+  .field input, .field select{
+    width:100%;
+    padding:12px 14px;
+    border-radius:14px;
+    border:1.5px solid var(--cream-dark);
+    font-size:0.95rem;
+    font-family:inherit;
+    background:var(--cream);
+    color:var(--brown);
+  }
+  .field input:focus, .field select:focus{
+    outline:none;
+    border-color:var(--terracotta);
+  }
+  .btn{
+    background:var(--terracotta);
+    color:var(--cream);
+    border:none;
+    padding:13px 20px;
+    border-radius:16px;
+    font-weight:600;
+    font-size:0.95rem;
+    cursor:pointer;
+    width:100%;
+    font-family:'Poppins',sans-serif;
+    transition:transform .15s, background .2s;
+  }
+  .btn:hover{transform:translateY(-1px); background:var(--terracotta-dark);}
+  .btn.secondary{
+    background:var(--sage-light);
+    color:var(--brown);
+  }
+  .result{
+    margin-top:16px;
+    background:var(--cream);
+    border:1.5px dashed var(--terracotta);
+    border-radius:16px;
+    padding:16px;
+    text-align:center;
+    display:none;
+  }
+  .result.show{display:block; animation:fadeIn .3s ease;}
+  .result .big{
+    font-size:1.9rem;
+    font-weight:700;
+    color:var(--terracotta-dark);
+    font-family:'Fraunces',serif;
+  }
+  .result .small{
+    font-size:0.8rem;
+    color:var(--muted);
+    margin-top:4px;
+  }
+
+  .divider{
+    text-align:center;
+    color:var(--sage);
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin:28px 0 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .divider::before, .divider::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--cream-dark);
+  }
+
+  .swap-options{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .swap-chip{
+    padding:8px 13px;
+    border-radius:20px;
+    border:1.5px solid var(--cream-dark);
+    background:var(--cream);
+    color:var(--brown);
+    font-size:0.8rem;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .swap-chip.active{
+    background:var(--sage);
+    color:white;
+    border-color:var(--sage);
+  }
+
+  /* Challenge grid */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:8px;
+    margin-top:14px;
+  }
+  .day{
+    aspect-ratio:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--cream);
+    border-radius:50%;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--terracotta-dark);
+    cursor:pointer;
+    border:1.5px solid var(--cream-dark);
+    user-select:none;
+    transition:all .15s;
+    font-family:'Fraunces',serif;
+  }
+  .day.done{
+    background:var(--sage);
+    color:white;
+    border-color:var(--sage);
+  }
+  .progress-bar{
+    height:10px;
+    background:var(--cream-dark);
+    border-radius:20px;
+    overflow:hidden;
+    margin:14px 0 6px;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--terracotta);
+    width:0%;
+    transition:width .4s;
+  }
+  .progress-label{
+    font-size:0.82rem;
+    color:var(--muted);
+    text-align:right;
+  }
+  .celebrate{
+    display:none;
+    text-align:center;
+    background:var(--sage-light);
+    border-radius:16px;
+    padding:16px;
+    margin-top:14px;
+    font-weight:600;
+    color:var(--brown);
+  }
+  .celebrate.show{display:block; animation:fadeIn .4s ease;}
+
+  .tip-item{
+    display:flex;
+    gap:10px;
+    padding:13px 0;
+    border-bottom:1px solid var(--cream-dark);
+  }
+  .tip-item:last-child{border-bottom:none;}
+  .tip-emoji{font-size:1.3rem;}
+
+  .mistake-item{
+    display:flex;
+    gap:10px;
+    padding:11px 0;
+    border-bottom:1px solid var(--cream-dark);
+    font-size:0.87rem;
+    color:var(--muted);
+  }
+  .mistake-item:last-child{border-bottom:none;}
+  .mistake-item b{color:var(--brown);}
+  .mistake-x{color:var(--terracotta-dark); font-weight:700;}
+
+  /* Facts / motivation */
+  .fact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .fact-card{
+    text-align:center;
+    padding:20px 10px;
+  }
+  .fact-card .num{
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--terracotta-dark);
+    font-family:'Fraunces',serif;
+  }
+  .fact-card .label{
+    font-size:0.76rem;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .quote-card{
+    background:var(--brown);
+    color:var(--cream);
+    text-align:center;
+    padding:30px 24px;
+  }
+  .quote-card p{
+    font-size:1.2rem;
+    font-weight:500;
+    margin:0;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    line-height:1.4;
+  }
+
+  /* FAQ accordion */
+  .faq-item{
+    border-bottom:1px solid var(--cream-dark);
+  }
+  .faq-item:last-child{border-bottom:none;}
+  .faq-q{
+    padding:14px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    font-weight:600;
+    font-size:0.92rem;
+    color:var(--brown);
+  }
+  .faq-q .arrow{
+    transition:transform .2s;
+    color:var(--terracotta);
+    flex-shrink:0;
+    margin-left:10px;
+  }
+  .faq-item.open .arrow{transform:rotate(180deg);}
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    color:var(--muted);
+    font-size:0.86rem;
+    line-height:1.5;
+  }
+  .faq-item.open .faq-a{max-height:220px; padding-bottom:14px;}
+
+  /* Glossary */
+  .glossary-item{
+    padding:13px 0;
+    border-bottom:1px solid var(--cream-dark);
+  }
+  .glossary-item:last-child{border-bottom:none;}
+  .glossary-term{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    color:var(--terracotta-dark);
+    font-size:1rem;
+    margin-bottom:3px;
+  }
+  .glossary-def{
+    color:var(--muted);
+    font-size:0.86rem;
+    line-height:1.5;
+    margin:0;
+  }
+
+  table.income-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.82rem;
+    margin-top:10px;
+  }
+  table.income-table th{
+    text-align:left;
+    color:var(--muted);
+    font-weight:600;
+    padding:8px 6px;
+    border-bottom:2px solid var(--cream-dark);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  table.income-table td{
+    padding:10px 6px;
+    border-bottom:1px solid var(--cream-dark);
+  }
+  table.income-table td:first-child{font-weight:600; color:var(--brown);}
+
+  footer{
+    text-align:center;
+    font-size:0.78rem;
+    color:var(--muted);
+    padding:34px 20px 0;
+  }
+  footer .mini-title{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    color:var(--terracotta-dark);
+    font-size:0.95rem;
+    display:block;
+    margin-bottom:4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <span class="eyebrow">Tu guía de bolsillo</span>
+  <h1>Ahorra sin <em>drama</em></h1>
+  <p>Métodos, calculadoras, un reto de 30 días y todo lo que necesitas saber para empezar a ahorrar de verdad.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">12 métodos</div>
+    <div class="hero-stat">3 calculadoras</div>
+    <div class="hero-stat">Glosario incluido</div>
+  </div>
+</header>
+
+<nav id="nav">
+  <button data-tab="metodos" class="active">Métodos</button>
+  <button data-tab="calculadora">Calculadora</button>
+  <button data-tab="reto">Reto 30 días</button>
+  <button data-tab="tips">Tips</button>
+  <button data-tab="motivacion">Motivación</button>
+  <button data-tab="glosario">Glosario</button>
+</nav>
+
+<main>
+
+  <!-- METODOS -->
+  <section id="metodos" class="active">
+    <div class="section-intro">
+      <span class="eyebrow">Elige tu ritmo</span>
+      <h2>12 formas de ahorrar</h2>
+      <p>Elige la que más se acomode a tu día a día, o combina varias.</p>
+    </div>
+    <div class="method-grid">
+      <div class="card method-card">
+        <div class="method-icon">📅</div>
+        <div><span class="method-tag">Clásico</span><h3>Reto de las 52 semanas</h3><p>Cada semana ahorras un poco más que la anterior: semana 1 ahorras $10, semana 2 $20, y así hasta la semana 52. Sin darte cuenta, terminas el año con una buena cantidad guardada.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">📊</div>
+        <div><span class="method-tag">Organización</span><h3>Regla 50/30/20</h3><p>De lo que ganas: 50% a lo esencial (comida, transporte), 30% a gustos personales, y 20% directo al ahorro, sin tocarlo.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">🪙</div>
+        <div><span class="method-tag">Sin esfuerzo</span><h3>El bote del cambio</h3><p>Todo el cambio o los billetes chicos que te sobren al día se van directo a un bote o alcancía. No lo notas en el bolsillo, pero se acumula rápido.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">✉️</div>
+        <div><span class="method-tag">Control</span><h3>Sobres por categoría</h3><p>Divides tu dinero en "sobres" (pueden ser digitales): comida, diversión, ahorro, imprevistos. Cuando se acaba lo de un sobre, ya no gastas más en eso ese mes.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">⚡</div>
+        <div><span class="method-tag">Automático</span><h3>Págate a ti primero</h3><p>El día que te llega dinero, aparta tu ahorro de inmediato (aunque sea poco) antes de gastar en cualquier otra cosa. Lo que sobra es lo que usas para vivir.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">⏳</div>
+        <div><span class="method-tag">Anti-impulso</span><h3>Regla de las 24 horas</h3><p>Antes de comprar algo que no necesitas de verdad, espera un día completo. Si al otro día lo sigues queriendo, decides con más calma.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">🚫</div>
+        <div><span class="method-tag">Reto</span><h3>Días sin gastar</h3><p>Elige 2 o 3 días a la semana donde no gastas absolutamente nada extra, solo lo indispensable. Funciona muy bien combinado con el reto de 30 días.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">🔄</div>
+        <div><span class="method-tag">Redondeo</span><h3>Redondea tus compras</h3><p>Cada vez que compres algo, redondea el precio hacia arriba (ej. de $47 a $50) y guarda la diferencia en un bote o cuenta aparte.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">📓</div>
+        <div><span class="method-tag">Método japonés</span><h3>Kakeibo</h3><p>Cada mes anotas a mano cuánto entra, cuánto planeas gastar, cuánto gastaste de verdad y cómo mejorar. Es más reflexivo: te hace preguntarte "¿esto lo necesito o lo quiero?" antes de cada gasto grande.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">🛟</div>
+        <div><span class="method-tag">Protección</span><h3>Fondo de emergencia</h3><p>Antes de ahorrar para gustos, junta un colchón que cubra entre 3 y 6 meses de tus gastos básicos. Es el ahorro que no se toca salvo una urgencia real (quedarte sin trabajo, un problema de salud, etc.).</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">📈</div>
+        <div><span class="method-tag">Siguiente nivel</span><h3>Inversión básica</h3><p>Cuando ya tienes el hábito de ahorrar, puedes mover parte de ese dinero a instrumentos de bajo riesgo como CETES o un fondo de inversión, para que tu dinero crezca un poco más que guardado en casa.</p></div>
+      </div>
+      <div class="card method-card">
+        <div class="method-icon">🎯</div>
+        <div><span class="method-tag">En grupo</span><h3>Meta compartida</h3><p>Ahorrar junto con una amiga o tu pareja para algo en común (un viaje, un regalo, un evento) ayuda a mantener la disciplina porque hay alguien más pendiente de la meta contigo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section id="calculadora">
+    <div class="section-intro">
+      <span class="eyebrow">Números reales</span>
+      <h2>Calculadoras</h2>
+      <p>Pon números reales a tus metas.</p>
+    </div>
+
+    <div class="card">
+      <h3>Calculadora de metas</h3>
+      <p style="color:var(--muted); font-size:0.85rem; margin-top:4px;">Dinos qué quieres lograr y te decimos cuánto ahorrar.</p>
+      <div style="margin-top:16px;">
+        <div class="field">
+          <label>¿Para qué estás ahorrando?</label>
+          <input type="text" id="goalName" placeholder="Ej. celular nuevo, viaje, curso...">
+        </div>
+        <div class="field">
+          <label>¿Cuánto cuesta / cuánto quieres ahorrar?</label>
+          <input type="number" id="goalAmount" placeholder="Ej. 3000" min="1">
+        </div>
+        <div class="field">
+          <label>¿En cuánto tiempo lo quieres lograr?</label>
+          <input type="number" id="goalTime" placeholder="Ej. 4" min="1" style="margin-bottom:8px;">
+        </div>
+        <div class="field">
+          <label>Unidad de tiempo</label>
+          <select id="goalUnit">
+            <option value="semanas">Semanas</option>
+            <option value="meses" selected>Meses</option>
+          </select>
+        </div>
+        <button class="btn" onclick="calcularMeta()">Calcular</button>
+      </div>
+      <div class="result" id="goalResult">
+        <div class="big" id="goalBig">$0</div>
+        <div class="small" id="goalSmall"></div>
+      </div>
+    </div>
+
+    <div class="divider">También prueba</div>
+
+    <div class="card">
+      <h3>¿Cuánto ahorrarías si dejas de comprar...?</h3>
+      <p style="color:var(--muted); font-size:0.85rem; margin-top:4px;">Elige un gastillo diario y mira cuánto suma con el tiempo.</p>
+      <div class="swap-options" id="swapOptions">
+        <div class="swap-chip active" data-amount="35">☕ Café ($35)</div>
+        <div class="swap-chip" data-amount="50">🥤 Refresco+snack ($50)</div>
+        <div class="swap-chip" data-amount="90">🍔 Comida rápida ($90)</div>
+        <div class="swap-chip" data-amount="20">🚬 Cigarros ($20)</div>
+      </div>
+      <button class="btn secondary" onclick="calcularSwap()">Ver cuánto ahorraría</button>
+      <div class="result" id="swapResult">
+        <div class="big" id="swapBig">$0</div>
+        <div class="small" id="swapSmall"></div>
+      </div>
+    </div>
+
+    <div class="divider">Protección</div>
+
+    <div class="card">
+      <h3>Calculadora de fondo de emergencia</h3>
+      <p style="color:var(--muted); font-size:0.85rem; margin-top:4px;">Calcula cuánto necesitarías juntar como colchón.</p>
+      <div style="margin-top:16px;">
+        <div class="field">
+          <label>¿Cuánto gastas al mes en lo esencial? (renta, comida, transporte, servicios)</label>
+          <input type="number" id="emergencyExpense" placeholder="Ej. 6000" min="1">
+        </div>
+        <div class="field">
+          <label>¿Cuántos meses de colchón quieres tener?</label>
+          <select id="emergencyMonths">
+            <option value="3">3 meses (mínimo recomendado)</option>
+            <option value="6" selected>6 meses (ideal)</option>
+            <option value="9">9 meses</option>
+            <option value="12">12 meses</option>
+          </select>
+        </div>
+        <button class="btn secondary" onclick="calcularEmergencia()">Calcular mi fondo</button>
+      </div>
+      <div class="result" id="emergencyResult">
+        <div class="big" id="emergencyBig">$0</div>
+        <div class="small" id="emergencySmall"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETO -->
+  <section id="reto">
+    <div class="section-intro">
+      <span class="eyebrow">30 días</span>
+      <h2>Reto de ahorro</h2>
+      <p>Marca cada día que logres ahorrar algo, aunque sea poquito.</p>
+    </div>
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 30 días</div>
+      <div class="grid" id="challengeGrid"></div>
+      <div class="celebrate" id="celebrate">🎉 ¡Completaste el reto de 30 días! Ya tienes un hábito de ahorro en marcha.</div>
+      <button class="btn secondary" style="margin-top:16px;" onclick="resetChallenge()">Reiniciar reto</button>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section id="tips">
+    <div class="section-intro">
+      <span class="eyebrow">Hábitos chiquitos</span>
+      <h2>Tips para gastar menos</h2>
+      <p>Pequeños cambios que suman grande.</p>
+    </div>
+    <div class="card">
+      <div class="tip-item">
+        <div class="tip-emoji">🛒</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Lista antes de comprar</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Antes de ir a la tienda o abrir la app, escribe qué necesitas. Si no está en la lista, espera 24 horas antes de comprarlo.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">📱</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Revisa tus suscripciones</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Streaming, apps, membresías... cancela las que no uses al menos una vez por semana.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">🍱</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Cocina en lote</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Preparar comida para varios días cuesta menos que pedir o comprar algo ya hecho cada vez.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">👗</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Regla de "lo que ya tengo"</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Antes de comprar ropa nueva, revisa si puedes combinar algo que ya tienes de forma diferente.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">💳</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Paga en efectivo cuando puedas</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Ver físicamente el dinero salir de tu bolsa ayuda más a frenar gastos que pagar sin pensar con tarjeta.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">🔔</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Desactiva notificaciones de ofertas</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Las notificaciones de "oferta" o "último día" están diseñadas para generarte urgencia de comprar sin pensar.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">🤝</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Busca un "accountability buddy"</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Avísale a una amiga tu meta de ahorro — es más fácil mantenerse cuando alguien más lo sabe.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">📆</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Revisa tus gastos cada semana</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Diez minutos los domingos para ver en qué se fue tu dinero te ayuda a notar fugas antes de que se vuelvan hábito.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">🏷️</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Compara antes de comprar</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Para compras grandes, revisa precios en al menos 2 o 3 lugares antes de decidir.</p></div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-emoji">🎁</div>
+        <div><h3 style="margin:0 0 2px; font-size:0.96rem;">Celebra tus avances</h3><p style="margin:0; color:var(--muted); font-size:0.85rem;">Cuando llegues a una meta chica, date un gusto pequeño planeado — ayuda a que ahorrar no se sienta como privación constante.</p></div>
+      </div>
+    </div>
+
+    <div class="divider">Para no caer en lo mismo</div>
+
+    <div class="card">
+      <h3>Errores comunes al ahorrar</h3>
+      <div class="mistake-item"><span class="mistake-x">✕</span> <span><b>Ahorrar solo "lo que sobra":</b> casi nunca sobra nada si no lo apartas primero.</span></div>
+      <div class="mistake-item"><span class="mistake-x">✕</span> <span><b>No tener una meta clara:</b> es más fácil romper el hábito cuando no sabes para qué ahorras.</span></div>
+      <div class="mistake-item"><span class="mistake-x">✕</span> <span><b>Meterte en metas poco realistas:</b> proponerte ahorrar el 50% de tu ingreso de golpe suele terminar en abandono.</span></div>
+      <div class="mistake-item"><span class="mistake-x">✕</span> <span><b>Tocar el fondo de emergencia por gustos:</b> ese dinero es solo para urgencias reales.</span></div>
+      <div class="mistake-item"><span class="mistake-x">✕</span> <span><b>No registrar en qué se va el dinero:</b> sin verlo escrito es fácil subestimar cuánto gastas en cosas chicas.</span></div>
+    </div>
+  </section>
+
+  <!-- MOTIVACION -->
+  <section id="motivacion">
+    <div class="section-intro">
+      <span class="eyebrow">No se te olvide por qué</span>
+      <h2>Motivación</h2>
+      <p>Datos rápidos y un empujón para seguir.</p>
+    </div>
+
+    <div class="card quote-card">
+      <p>"No se trata de cuánto ganas, sino de cuánto decides quedarte."</p>
+    </div>
+
+    <div class="fact-grid" style="margin-top:16px;">
+      <div class="card fact-card">
+        <div class="num">$20</div>
+        <div class="label">al día = $7,300 al año</div>
+      </div>
+      <div class="card fact-card">
+        <div class="num">$100</div>
+        <div class="label">a la semana = $5,200 al año</div>
+      </div>
+      <div class="card fact-card">
+        <div class="num">30 días</div>
+        <div class="label">para formar un hábito nuevo</div>
+      </div>
+      <div class="card fact-card">
+        <div class="num">1 meta</div>
+        <div class="label">clara hace más fácil no gastar de más</div>
+      </div>
+      <div class="card fact-card">
+        <div class="num">3-6</div>
+        <div class="label">meses de gastos es un buen fondo de emergencia</div>
+      </div>
+      <div class="card fact-card">
+        <div class="num">10%</div>
+        <div class="label">de tu ingreso es un buen punto de partida si empiezas desde cero</div>
+      </div>
+    </div>
+
+    <div class="divider">Ahorro según tus ingresos</div>
+
+    <div class="card">
+      <h3>Una guía orientativa</h3>
+      <p style="color:var(--muted); font-size:0.85rem;">No es una regla fija, pero ayuda a arrancar si no sabes por dónde empezar.</p>
+      <table class="income-table">
+        <tr><th>Si ganas al mes</th><th>Podrías apartar</th></tr>
+        <tr><td>Menos de $5,000</td><td>5–10% ($250–$500)</td></tr>
+        <tr><td>$5,000–$10,000</td><td>10–15% ($500–$1,500)</td></tr>
+        <tr><td>$10,000–$20,000</td><td>15–20% ($1,500–$4,000)</td></tr>
+        <tr><td>Más de $20,000</td><td>20% o más</td></tr>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3 style="margin-top:0;">Preguntas frecuentes</h3>
+      <div id="faqList">
+        <div class="faq-item">
+          <div class="faq-q">¿Y si gano muy poco para ahorrar? <span class="arrow">▾</span></div>
+          <div class="faq-a">Siempre se puede empezar con cantidades chiquitas. El punto no es cuánto, sino crear el hábito de apartar algo, aunque sea $10 o $20 a la vez.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Dónde guardo el dinero que ahorro? <span class="arrow">▾</span></div>
+          <div class="faq-a">Puede ser una alcancía física, una cuenta de banco aparte de la que usas a diario, o una app de ahorro. Lo importante es que no sea fácil de tocar por impulso.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Qué hago si rompo la racha del reto? <span class="arrow">▾</span></div>
+          <div class="faq-a">No pasa nada, simplemente retómalo al día siguiente. Lo que cuenta es el progreso general, no la perfección.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Puedo combinar varios métodos? <span class="arrow">▾</span></div>
+          <div class="faq-a">Sí, de hecho es lo más común. Por ejemplo, puedes usar sobres por categoría y al mismo tiempo el bote del cambio.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Primero ahorro o primero pago deudas? <span class="arrow">▾</span></div>
+          <div class="faq-a">En general conviene juntar un fondo de emergencia chico primero (aunque sea de un mes de gastos), y luego enfocarte en pagar deudas con intereses altos mientras sigues ahorrando algo pequeño.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cuándo ya puedo pensar en invertir? <span class="arrow">▾</span></div>
+          <div class="faq-a">Cuando ya tengas tu fondo de emergencia armado y el hábito de ahorrar sea constante, ahí tiene sentido explorar opciones de inversión de bajo riesgo para que tu dinero rinda más.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOSARIO -->
+  <section id="glosario">
+    <div class="section-intro">
+      <span class="eyebrow">Para que entiendas todo</span>
+      <h2>Glosario básico</h2>
+      <p>Términos que vas a escuchar seguido al hablar de dinero.</p>
+    </div>
+    <div class="card">
+      <div class="glossary-item">
+        <div class="glossary-term">Presupuesto</div>
+        <p class="glossary-def">Un plan de cuánto dinero entra y en qué se va a ir, antes de que pase el mes.</p>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Fondo de emergencia</div>
+        <p class="glossary-def">Dinero guardado aparte, solo para imprevistos reales (perder el trabajo, un gasto médico), no para gustos.</p>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Liquidez</div>
+        <p class="glossary-def">Qué tan rápido puedes convertir algo en dinero disponible. El efectivo es muy líquido; una inversión a largo plazo, menos.</p>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Interés</div>
+        <p class="glossary-def">El costo de pedir dinero prestado, o la ganancia que te da el banco/inversión por guardar tu dinero con ellos.</p>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Interés compuesto</div>
+        <p class="glossary-def">Cuando las ganancias que ya generaste también empiezan a generar más ganancias — por eso entre antes empieces a ahorrar o invertir, mejor.</p>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Inflación</div>
+        <p class="glossary-def">El aumento general de precios con el tiempo, que hace que tu dinero alcance para menos si no crece al mismo ritmo.</p>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">CETES</div>
+        <p class="glossary-def">Certificados de la Tesorería — una forma de prestarle dinero al gobierno mexicano a cambio de un interés, considerada de bajo riesgo para empezar a invertir.</p>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Diversificación</div>
+        <p class="glossary-def">No poner todo tu dinero en un solo lugar, para que si algo sale mal no pierdas todo de golpe.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="mini-title">Ahorra sin drama</span>
+  Hecho con cariño para ayudarte a cumplir tus metas.
+</footer>
+
+<script>
+  // Tab navigation
+  const buttons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('main section');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      buttons.forEach(b=>b.classList.remove('active'));
+      sections.forEach(s=>s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // Goal calculator
+  function calcularMeta(){
+    const name = document.getElementById('goalName').value || 'tu meta';
+    const amount = parseFloat(document.getElementById('goalAmount').value);
+    const time = parseFloat(document.getElementById('goalTime').value);
+    const unit = document.getElementById('goalUnit').value;
+    const resultBox = document.getElementById('goalResult');
+    if(!amount || !time || amount<=0 || time<=0){
+      document.getElementById('goalBig').textContent = '¡Faltan datos!';
+      document.getElementById('goalSmall').textContent = 'Llena el monto y el tiempo para calcular.';
+      resultBox.classList.add('show');
+      return;
+    }
+    const perPeriod = amount/time;
+    document.getElementById('goalBig').textContent = '$' + perPeriod.toLocaleString('es-MX',{maximumFractionDigits:2});
+    document.getElementById('goalSmall').textContent = `Ahorrando esto cada ${unit==='semanas'?'semana':'mes'} lograrás "${name}" en ${time} ${unit}.`;
+    resultBox.classList.add('show');
+  }
+
+  // Swap calculator
+  let swapAmount = 35;
+  document.querySelectorAll('.swap-chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('.swap-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      swapAmount = parseFloat(chip.dataset.amount);
+    });
+  });
+  function calcularSwap(){
+    const weekly = swapAmount*7;
+    const monthly = swapAmount*30;
+    const yearly = swapAmount*365;
+    document.getElementById('swapBig').textContent = '$' + yearly.toLocaleString('es-MX',{maximumFractionDigits:0});
+    document.getElementById('swapSmall').textContent = `al año — eso son $${weekly.toLocaleString('es-MX',{maximumFractionDigits:0})} a la semana y $${monthly.toLocaleString('es-MX',{maximumFractionDigits:0})} al mes si dejas ese gasto diario.`;
+    document.getElementById('swapResult').classList.add('show');
+  }
+
+  // Emergency fund calculator
+  function calcularEmergencia(){
+    const expense = parseFloat(document.getElementById('emergencyExpense').value);
+    const months = parseFloat(document.getElementById('emergencyMonths').value);
+    const resultBox = document.getElementById('emergencyResult');
+    if(!expense || expense<=0){
+      document.getElementById('emergencyBig').textContent = '¡Faltan datos!';
+      document.getElementById('emergencySmall').textContent = 'Escribe cuánto gastas al mes en lo esencial.';
+      resultBox.classList.add('show');
+      return;
+    }
+    const total = expense*months;
+    document.getElementById('emergencyBig').textContent = '$' + total.toLocaleString('es-MX',{maximumFractionDigits:0});
+    document.getElementById('emergencySmall').textContent = `Ese sería tu fondo de emergencia para ${months} meses. Si apartas $${Math.round(total/12).toLocaleString('es-MX')} al mes, lo juntarías en un año.`;
+    resultBox.classList.add('show');
+  }
+
+  // Challenge grid with localStorage
+  const TOTAL_DAYS = 30;
+  const STORAGE_KEY = 'reto_ahorro_30dias';
+  let challengeState = [];
+
+  function loadChallenge(){
+    try{
+      const saved = localStorage.getItem(STORAGE_KEY);
+      challengeState = saved ? JSON.parse(saved) : new Array(TOTAL_DAYS).fill(false);
+    }catch(e){
+      challengeState = new Array(TOTAL_DAYS).fill(false);
+    }
+  }
+
+  function saveChallenge(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(challengeState)); }catch(e){}
+  }
+
+  function renderChallenge(){
+    const grid = document.getElementById('challengeGrid');
+    grid.innerHTML = '';
+    let doneCount = 0;
+    challengeState.forEach((done, i)=>{
+      const cell = document.createElement('div');
+      cell.className = 'day' + (done ? ' done' : '');
+      cell.textContent = i+1;
+      cell.addEventListener('click', ()=>{
+        challengeState[i] = !challengeState[i];
+        saveChallenge();
+        renderChallenge();
+      });
+      grid.appendChild(cell);
+      if(done) doneCount++;
+    });
+    document.getElementById('progressFill').style.width = (doneCount/TOTAL_DAYS*100) + '%';
+    document.getElementById('progressLabel').textContent = `${doneCount} / ${TOTAL_DAYS} días`;
+    document.getElementById('celebrate').classList.toggle('show', doneCount===TOTAL_DAYS);
+  }
+
+  function resetChallenge(){
+    challengeState = new Array(TOTAL_DAYS).fill(false);
+    saveChallenge();
+    renderChallenge();
+  }
+
+  loadChallenge();
+  renderChallenge();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      item.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
