@@ -533,6 +533,197 @@
     display:block;
     margin-bottom:4px;
   }
+
+  /* ---- Mi Panel (interactivo) ---- */
+  .panel-block{margin-bottom:26px;}
+  .panel-block:last-child{margin-bottom:0;}
+  .panel-block h3{
+    margin:0 0 4px;
+    font-size:1.05rem;
+  }
+  .panel-block .panel-sub{
+    color:var(--muted);
+    font-size:0.83rem;
+    margin:0 0 14px;
+  }
+
+  .goal-form, .expense-form{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  @media(min-width:480px){
+    .goal-form{grid-template-columns:1.4fr 1fr 1fr auto;}
+    .expense-form{grid-template-columns:1.3fr 1fr 1fr auto;}
+  }
+  .goal-form input, .expense-form input, .expense-form select{
+    padding:11px 12px;
+    border-radius:12px;
+    border:1.5px solid var(--cream-dark);
+    font-size:0.86rem;
+    font-family:inherit;
+    background:var(--cream);
+    color:var(--brown);
+    width:100%;
+  }
+  .add-btn{
+    background:var(--brown);
+    color:var(--cream);
+    border:none;
+    border-radius:12px;
+    padding:11px 16px;
+    font-weight:600;
+    font-size:0.85rem;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+
+  .goal-card{
+    background:var(--cream);
+    border:1.5px solid var(--cream-dark);
+    border-radius:16px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    cursor:grab;
+  }
+  .goal-card.dragging{opacity:0.4;}
+  .goal-card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+    gap:8px;
+  }
+  .goal-card-top .handle{color:var(--muted); font-size:0.9rem; margin-right:4px;}
+  .goal-card-name{font-weight:600; font-size:0.92rem; flex:1;}
+  .goal-card-del{
+    background:none; border:none; color:var(--terracotta-dark);
+    font-size:0.95rem; cursor:pointer; padding:2px 6px;
+  }
+  .goal-card .progress-bar{margin:6px 0 4px;}
+  .goal-card-amounts{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.76rem;
+    color:var(--muted);
+  }
+  .goal-card-actions{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+  }
+  .mini-btn{
+    flex:1;
+    background:var(--sage-light);
+    border:none;
+    border-radius:10px;
+    padding:8px;
+    font-size:0.76rem;
+    font-weight:600;
+    color:var(--brown);
+    cursor:pointer;
+  }
+  .empty-msg{
+    color:var(--muted);
+    font-size:0.84rem;
+    text-align:center;
+    padding:14px 0;
+  }
+
+  .expense-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid var(--cream-dark);
+    font-size:0.85rem;
+  }
+  .expense-row:last-child{border-bottom:none;}
+  .expense-info{display:flex; flex-direction:column;}
+  .expense-cat{
+    font-size:0.68rem;
+    color:var(--sage);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .expense-amount{font-weight:700; color:var(--terracotta-dark);}
+  .expense-del{background:none; border:none; color:var(--muted); font-size:0.9rem; cursor:pointer; margin-left:10px;}
+  .expense-total{
+    display:flex;
+    justify-content:space-between;
+    font-weight:700;
+    padding-top:12px;
+    margin-top:4px;
+    border-top:2px solid var(--cream-dark);
+    font-size:0.95rem;
+  }
+
+  .envelope-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .envelope-row label{
+    flex:0 0 110px;
+    font-size:0.84rem;
+    font-weight:600;
+  }
+  .envelope-row input[type=number]{
+    width:90px;
+    padding:9px 10px;
+    border-radius:10px;
+    border:1.5px solid var(--cream-dark);
+    font-family:inherit;
+    background:var(--cream);
+    color:var(--brown);
+  }
+  .envelope-bar-track{
+    flex:1;
+    height:8px;
+    background:var(--cream-dark);
+    border-radius:20px;
+    overflow:hidden;
+  }
+  .envelope-bar-fill{
+    height:100%;
+    background:var(--sage);
+  }
+  .envelope-summary{
+    display:flex;
+    justify-content:space-between;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:2px solid var(--cream-dark);
+    font-size:0.88rem;
+    font-weight:600;
+  }
+  .envelope-summary.over{color:var(--terracotta-dark);}
+
+  .journal-area{
+    width:100%;
+    min-height:160px;
+    border-radius:16px;
+    border:1.5px solid var(--cream-dark);
+    background:var(--cream);
+    color:var(--brown);
+    font-family:'Poppins',sans-serif;
+    font-size:0.88rem;
+    padding:14px;
+    resize:vertical;
+    line-height:1.6;
+  }
+  .journal-area:focus{outline:none; border-color:var(--terracotta);}
+  .journal-status{
+    font-size:0.74rem;
+    color:var(--sage);
+    margin-top:8px;
+    text-align:right;
+    font-weight:600;
+    min-height:16px;
+  }
 </style>
 </head>
 <body>
@@ -553,6 +744,7 @@
 
 <nav id="nav">
   <button data-tab="metodos" class="active">Métodos</button>
+  <button data-tab="panel">Mi panel</button>
   <button data-tab="calculadora">Calculadora</button>
   <button data-tab="reto">Reto 30 días</button>
   <button data-tab="tips">Tips</button>
@@ -618,6 +810,67 @@
         <div class="method-icon">🎯</div>
         <div><span class="method-tag">En grupo</span><h3>Meta compartida</h3><p>Ahorrar junto con una amiga o tu pareja para algo en común (un viaje, un regalo, un evento) ayuda a mantener la disciplina porque hay alguien más pendiente de la meta contigo.</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- MI PANEL (interactivo) -->
+  <section id="panel">
+    <div class="section-intro">
+      <span class="eyebrow">Tu espacio</span>
+      <h2>Mi panel</h2>
+      <p>Escribe, agrega y organiza tus propios datos. Todo se guarda en este dispositivo.</p>
+    </div>
+
+    <div class="card panel-block">
+      <h3>🎯 Mis metas de ahorro</h3>
+      <p class="panel-sub">Agrega todas las metas que quieras. Mantén presionada una tarjeta para arrastrarla y reordenarla.</p>
+      <div class="goal-form">
+        <input type="text" id="newGoalName" placeholder="Nombre de la meta">
+        <input type="number" id="newGoalTarget" placeholder="Meta $" min="1">
+        <input type="number" id="newGoalSaved" placeholder="Ya tengo $" min="0">
+        <button class="add-btn" onclick="addGoal()">+ Agregar</button>
+      </div>
+      <div id="goalsList"></div>
+    </div>
+
+    <div class="card panel-block">
+      <h3>🧾 Registro de gastos</h3>
+      <p class="panel-sub">Anota lo que vas gastando para ver en qué se te va el dinero.</p>
+      <div class="expense-form">
+        <input type="text" id="newExpenseName" placeholder="¿En qué gastaste?">
+        <input type="number" id="newExpenseAmount" placeholder="Monto $" min="0">
+        <select id="newExpenseCategory">
+          <option>Comida</option>
+          <option>Transporte</option>
+          <option>Diversión</option>
+          <option>Ropa</option>
+          <option>Otros</option>
+        </select>
+        <button class="add-btn" onclick="addExpense()">+ Agregar</button>
+      </div>
+      <div id="expensesList"></div>
+      <div class="expense-total"><span>Total gastado</span><span id="expenseTotal">$0</span></div>
+      <button class="btn secondary" style="margin-top:14px;" onclick="resetExpenses()">Reiniciar gastos</button>
+    </div>
+
+    <div class="card panel-block">
+      <h3>✉️ Sobres de presupuesto</h3>
+      <p class="panel-sub">Reparte tu ingreso del mes entre categorías y mira cuánto te queda por asignar.</p>
+      <div class="field">
+        <label>Ingreso mensual</label>
+        <input type="number" id="envelopeIncome" placeholder="Ej. 8000" min="0">
+      </div>
+      <div id="envelopeRows"></div>
+      <div class="envelope-summary" id="envelopeSummary">
+        <span>Por asignar</span><span id="envelopeRemaining">$0</span>
+      </div>
+    </div>
+
+    <div class="card panel-block">
+      <h3>📝 Mi diario de ahorro</h3>
+      <p class="panel-sub">Escribe lo que quieras: tus razones, tentaciones que superaste, planes...</p>
+      <textarea class="journal-area" id="journalArea" placeholder="Hoy decidí no comprar..."></textarea>
+      <div class="journal-status" id="journalStatus"></div>
     </div>
   </section>
 
@@ -1040,6 +1293,211 @@
       item.classList.toggle('open');
     });
   });
+
+  /* ================= MI PANEL ================= */
+
+  // ---- Metas múltiples (con drag & drop para reordenar) ----
+  const GOALS_KEY = 'panel_metas_ahorro';
+  let goals = [];
+
+  function loadGoals(){
+    try{ goals = JSON.parse(localStorage.getItem(GOALS_KEY)) || []; }catch(e){ goals = []; }
+  }
+  function saveGoals(){
+    try{ localStorage.setItem(GOALS_KEY, JSON.stringify(goals)); }catch(e){}
+  }
+  function addGoal(){
+    const name = document.getElementById('newGoalName').value.trim();
+    const target = parseFloat(document.getElementById('newGoalTarget').value);
+    const saved = parseFloat(document.getElementById('newGoalSaved').value) || 0;
+    if(!name || !target || target<=0) return;
+    goals.push({id: Date.now().toString(), name, target, saved});
+    document.getElementById('newGoalName').value = '';
+    document.getElementById('newGoalTarget').value = '';
+    document.getElementById('newGoalSaved').value = '';
+    saveGoals();
+    renderGoals();
+  }
+  function addToGoal(id){
+    const amt = prompt('¿Cuánto quieres agregar a esta meta?');
+    const num = parseFloat(amt);
+    if(!num || num<=0) return;
+    const g = goals.find(x=>x.id===id);
+    if(g){ g.saved += num; saveGoals(); renderGoals(); }
+  }
+  function deleteGoal(id){
+    goals = goals.filter(x=>x.id!==id);
+    saveGoals();
+    renderGoals();
+  }
+  function renderGoals(){
+    const list = document.getElementById('goalsList');
+    list.innerHTML = '';
+    if(goals.length===0){
+      list.innerHTML = '<div class="empty-msg">Todavía no agregas ninguna meta.</div>';
+      return;
+    }
+    goals.forEach(g=>{
+      const pct = Math.min(100, Math.round((g.saved/g.target)*100));
+      const card = document.createElement('div');
+      card.className = 'goal-card';
+      card.draggable = true;
+      card.dataset.id = g.id;
+      card.innerHTML = `
+        <div class="goal-card-top">
+          <span class="goal-card-name"><span class="handle">⠿</span>${g.name}</span>
+          <button class="goal-card-del" onclick="deleteGoal('${g.id}')">✕</button>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="goal-card-amounts"><span>$${g.saved.toLocaleString('es-MX')} de $${g.target.toLocaleString('es-MX')}</span><span>${pct}%</span></div>
+        <div class="goal-card-actions">
+          <button class="mini-btn" onclick="addToGoal('${g.id}')">+ Agregar ahorro</button>
+        </div>
+      `;
+      card.addEventListener('dragstart', ()=>card.classList.add('dragging'));
+      card.addEventListener('dragend', ()=>{ card.classList.remove('dragging'); reorderGoalsFromDOM(); });
+      list.appendChild(card);
+    });
+  }
+  function reorderGoalsFromDOM(){
+    const ids = Array.from(document.querySelectorAll('.goal-card')).map(c=>c.dataset.id);
+    goals.sort((a,b)=> ids.indexOf(a.id) - ids.indexOf(b.id));
+    saveGoals();
+  }
+  const goalsListEl = document.getElementById('goalsList');
+  goalsListEl.addEventListener('dragover', e=>{
+    e.preventDefault();
+    const dragging = document.querySelector('.goal-card.dragging');
+    if(!dragging) return;
+    const after = [...goalsListEl.querySelectorAll('.goal-card:not(.dragging)')].find(el=>{
+      const box = el.getBoundingClientRect();
+      return e.clientY < box.top + box.height/2;
+    });
+    if(after) goalsListEl.insertBefore(dragging, after);
+    else goalsListEl.appendChild(dragging);
+  });
+
+  // ---- Registro de gastos ----
+  const EXPENSES_KEY = 'panel_gastos';
+  let expenses = [];
+  function loadExpenses(){
+    try{ expenses = JSON.parse(localStorage.getItem(EXPENSES_KEY)) || []; }catch(e){ expenses = []; }
+  }
+  function saveExpenses(){
+    try{ localStorage.setItem(EXPENSES_KEY, JSON.stringify(expenses)); }catch(e){}
+  }
+  function addExpense(){
+    const name = document.getElementById('newExpenseName').value.trim();
+    const amount = parseFloat(document.getElementById('newExpenseAmount').value);
+    const category = document.getElementById('newExpenseCategory').value;
+    if(!name || !amount || amount<=0) return;
+    expenses.unshift({id: Date.now().toString(), name, amount, category});
+    document.getElementById('newExpenseName').value = '';
+    document.getElementById('newExpenseAmount').value = '';
+    saveExpenses();
+    renderExpenses();
+  }
+  function deleteExpense(id){
+    expenses = expenses.filter(x=>x.id!==id);
+    saveExpenses();
+    renderExpenses();
+  }
+  function resetExpenses(){
+    if(expenses.length && !confirm('¿Borrar todos los gastos registrados?')) return;
+    expenses = [];
+    saveExpenses();
+    renderExpenses();
+  }
+  function renderExpenses(){
+    const list = document.getElementById('expensesList');
+    list.innerHTML = '';
+    if(expenses.length===0){
+      list.innerHTML = '<div class="empty-msg">Todavía no registras gastos.</div>';
+    }
+    let total = 0;
+    expenses.forEach(ex=>{
+      total += ex.amount;
+      const row = document.createElement('div');
+      row.className = 'expense-row';
+      row.innerHTML = `
+        <div class="expense-info"><span>${ex.name}</span><span class="expense-cat">${ex.category}</span></div>
+        <div style="display:flex; align-items:center;">
+          <span class="expense-amount">$${ex.amount.toLocaleString('es-MX')}</span>
+          <button class="expense-del" onclick="deleteExpense('${ex.id}')">✕</button>
+        </div>
+      `;
+      list.appendChild(row);
+    });
+    document.getElementById('expenseTotal').textContent = '$' + total.toLocaleString('es-MX');
+  }
+
+  // ---- Sobres de presupuesto ----
+  const ENVELOPE_KEY = 'panel_sobres';
+  const ENVELOPE_CATEGORIES = ['Comida','Transporte','Diversión','Ahorro','Otros'];
+  let envelopeData = {income:0, values:{}};
+  function loadEnvelope(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(ENVELOPE_KEY));
+      envelopeData = saved || {income:0, values:{}};
+    }catch(e){ envelopeData = {income:0, values:{}}; }
+  }
+  function saveEnvelope(){
+    try{ localStorage.setItem(ENVELOPE_KEY, JSON.stringify(envelopeData)); }catch(e){}
+  }
+  function renderEnvelope(){
+    document.getElementById('envelopeIncome').value = envelopeData.income || '';
+    const rows = document.getElementById('envelopeRows');
+    rows.innerHTML = '';
+    ENVELOPE_CATEGORIES.forEach(cat=>{
+      const val = envelopeData.values[cat] || 0;
+      const pct = envelopeData.income>0 ? Math.min(100, Math.round((val/envelopeData.income)*100)) : 0;
+      const row = document.createElement('div');
+      row.className = 'envelope-row';
+      row.innerHTML = `
+        <label>${cat}</label>
+        <div class="envelope-bar-track"><div class="envelope-bar-fill" style="width:${pct}%"></div></div>
+        <input type="number" min="0" value="${val || ''}" placeholder="0" data-cat="${cat}">
+      `;
+      row.querySelector('input').addEventListener('input', e=>{
+        envelopeData.values[cat] = parseFloat(e.target.value) || 0;
+        saveEnvelope();
+        renderEnvelope();
+      });
+      rows.appendChild(row);
+    });
+    const assigned = Object.values(envelopeData.values).reduce((a,b)=>a+(b||0),0);
+    const remaining = (envelopeData.income||0) - assigned;
+    const summary = document.getElementById('envelopeSummary');
+    document.getElementById('envelopeRemaining').textContent = '$' + remaining.toLocaleString('es-MX');
+    summary.classList.toggle('over', remaining<0);
+  }
+  document.getElementById('envelopeIncome').addEventListener('input', e=>{
+    envelopeData.income = parseFloat(e.target.value) || 0;
+    saveEnvelope();
+    renderEnvelope();
+  });
+
+  // ---- Diario ----
+  const JOURNAL_KEY = 'panel_diario';
+  const journalArea = document.getElementById('journalArea');
+  const journalStatus = document.getElementById('journalStatus');
+  try{ journalArea.value = localStorage.getItem(JOURNAL_KEY) || ''; }catch(e){}
+  let journalTimeout;
+  journalArea.addEventListener('input', ()=>{
+    journalStatus.textContent = '';
+    clearTimeout(journalTimeout);
+    journalTimeout = setTimeout(()=>{
+      try{
+        localStorage.setItem(JOURNAL_KEY, journalArea.value);
+        journalStatus.textContent = 'Guardado ✓';
+      }catch(e){}
+    }, 500);
+  });
+
+  // Init panel
+  loadGoals(); renderGoals();
+  loadExpenses(); renderExpenses();
+  loadEnvelope(); renderEnvelope();
 </script>
 
 </body>
